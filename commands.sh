@@ -1,6 +1,12 @@
 :'
 environment: cli
 category: mandatory
+title: git
+'
+sudo apt install git
+:'
+environment: cli
+category: mandatory
 title: flatpak cli
 '
 sudo apt install -y flatpak
