@@ -1,5 +1,11 @@
 :'
-environment: gui
-category: optional
+environment: cli
+category: mandatory
 '
-sudo apt install flatpak
+sudo apt install -y flatpak
+
+:'
+environment: gui
+category: mandatory
+'
+sudo apt install -y gnome-software-plugin-flatpak
