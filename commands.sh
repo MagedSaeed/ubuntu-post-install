@@ -29,7 +29,7 @@ title: vim
 COMMENT
 
 if is_installed vim; then
-    echo "git is already installed."
+    echo "vim is already installed."
 else
     sudo apt install -y vim
 fi
