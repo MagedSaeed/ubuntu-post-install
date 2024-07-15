@@ -28,3 +28,10 @@ category: mandatory
 title: visual studio code
 '
 sudo snap install code --classic
+
+:'
+environemnt: gui
+category: mandatory
+title: virtualenvwrapper
+'
+sudo chmod +x scripts/virtualenvwrapper.sh && bash scripts/virtualenvwrapper.sh
