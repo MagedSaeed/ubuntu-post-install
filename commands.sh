@@ -25,13 +25,13 @@ echo
 : <<'COMMENT'
 environment: cli
 category: mandatory
-title: git
+title: vim
 COMMENT
 
-if is_installed git; then
+if is_installed vim; then
     echo "git is already installed."
 else
-    sudo apt install -y git
+    sudo apt install -y vim
 fi
 
 echo
