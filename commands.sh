@@ -2,13 +2,7 @@
 
 # Function to check if a package is installed
 is_installed() {
-    if command -v "$1" &> /dev/null; then
-        return 0
-    elif dpkg -l "$1" &> /dev/null; then
-        return 0
-    else
-        return 1
-    fi
+    dpkg -s "$1" &> /dev/null
 }
 
 # Check and install git
