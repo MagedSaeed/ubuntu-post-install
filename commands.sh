@@ -20,6 +20,22 @@ fi
 
 echo
 
+
+# Check and install vim
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: git
+COMMENT
+
+if is_installed git; then
+    echo "git is already installed."
+else
+    sudo apt install -y git
+fi
+
+echo
+
 # Check and install flatpak
 : <<'COMMENT'
 environment: cli
@@ -72,13 +88,13 @@ echo
 : <<'COMMENT'
 environemnt: gui
 category: mandatory
-title: visual studio code
+title: vim
 COMMENT
 
 if snap list | grep -q code; then
-    echo "Visual Studio Code is already installed."
+    echo "vim is already installed."
 else
-    sudo snap install code --classic
+    sudo apt install -y vim
 fi
 
 echo
