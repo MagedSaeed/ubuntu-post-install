@@ -25,22 +25,6 @@ fi
 
 echo
 
-
-# Check and install curl
-: <<'COMMENT'
-environment: cli
-category: mandatory
-title: curl
-COMMENT
-
-if command_exists curl; then
-    echo "curl is already installed."
-else
-    sudo apt install -y curl
-fi
-
-echo
-
 # Check and install flatpak
 : <<'COMMENT'
 environment: cli
@@ -115,6 +99,21 @@ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     echo "virtualenvwrapper is already installed."
 else
     sudo chmod +x scripts/virtualenvwrapper.sh && bash scripts/virtualenvwrapper.sh
+fi
+
+echo
+
+# Check and install zsh
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: zsh
+COMMENT
+
+if command_exists zsh; then
+    echo "zsh is already installed."
+else
+    sudo apt install -y zsh
 fi
 
 echo
