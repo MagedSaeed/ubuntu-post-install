@@ -84,21 +84,6 @@ fi
 
 echo
 
-# Check and install visual studio code
-: <<'COMMENT'
-environemnt: gui
-category: mandatory
-title: vim
-COMMENT
-
-if snap list | grep -q code; then
-    echo "vim is already installed."
-else
-    sudo apt install -y vim
-fi
-
-echo
-
 # Check and install virtualenvwrapper
 : <<'COMMENT'
 environemnt: gui
