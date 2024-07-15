@@ -19,7 +19,7 @@ echo "Installing virtualenvwrapper..."
 sudo pip3 install virtualenvwrapper --break-system-packages
 
 # Get the path to Python3 binary
-PYTHON3_BIN_PATH=$(dirname $(which python3))
+PYTHON3_BIN_PATH=/usr/local/bin/virtualenvwrapper.sh
 
 # Add virtualenvwrapper settings to .bashrc
 echo "Adding virtualenvwrapper settings to .bashrc..."
