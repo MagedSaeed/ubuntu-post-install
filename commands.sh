@@ -25,6 +25,22 @@ fi
 
 echo
 
+
+# Check and install curl
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: curl
+COMMENT
+
+if command_exists curl; then
+    echo "curl is already installed."
+else
+    sudo apt install -y curl
+fi
+
+echo
+
 # Check and install flatpak
 : <<'COMMENT'
 environment: cli
