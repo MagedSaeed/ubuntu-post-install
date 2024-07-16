@@ -148,3 +148,21 @@ else
 fi
 
 echo
+
+# Check and install zsh-autosuggestions
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: zsh-autosuggestions
+COMMENT
+
+if [ -d "$HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions" ]; then
+    echo "zsh-autosuggestions is already installed."
+else
+    git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+    if ! grep -q "zsh-autosuggestions" $HOME/.zshrc; then
+        sed -i 's/plugins=(/plugins=(zsh-autosuggestions /' $HOME/.zshrc
+    fi
+fi
+
+echo
