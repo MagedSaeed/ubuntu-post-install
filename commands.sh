@@ -272,6 +272,22 @@ fi
 
 echo
 
+# Install Java
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: Java
+COMMENT
+
+if command_exists java; then
+    echo "Java is already installed."
+else
+    sudo apt update
+    sudo apt install -y default-jdk
+fi
+
+echo
+
 # Add aliases to ~/.bin/aliasses.sh
 mkdir -p $HOME/.bin
 cat << 'EOF' > $HOME/.bin/aliasses.sh
