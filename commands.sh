@@ -234,6 +234,24 @@ fi
 
 echo
 
+# Install Docker Compose
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: Docker Compose
+COMMENT
+
+if command_exists docker-compose; then
+    echo "Docker Compose is already installed."
+else
+    DOCKER_COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep '"tag_name"' | sed -E 's/.*"([^"]+)".*/\1/')
+    sudo curl -L "https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+fi
+
+echo
+
 # Add aliases to ~/.bin/aliasses.sh
 mkdir -p $HOME/.bin
 cat << 'EOF' > $HOME/.bin/aliasses.sh
