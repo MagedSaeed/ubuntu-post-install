@@ -166,3 +166,56 @@ else
 fi
 
 echo
+
+# Check and install redis from the official Redis repository
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: redis
+COMMENT
+
+if command_exists redis-server; then
+    echo "redis-server is already installed."
+else
+    curl -fsSL https://packages.redis.io/gpg | sudo gpg --dearmor -o /usr/share/keyrings/redis-archive-keyring.gpg
+    echo "deb [signed-by=/usr/share/keyrings/redis-archive-keyring.gpg] https://packages.redis.io/deb $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/redis.list
+    sudo apt-get update
+    sudo apt-get install -y redis
+fi
+
+echo
+
+# Check and install redis-tools
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: redis-tools
+COMMENT
+
+if command_exists redis-cli; then
+    echo "redis-tools is already installed."
+else
+    sudo apt install -y redis-tools
+fi
+
+echo
+
+# Add aliases to ~/.bin/aliasses.sh
+mkdir -p $HOME/.bin
+cat << 'EOF' > $HOME/.bin/aliasses.sh
+alias runserver='python manage.py runserver'
+alias makemigrations='python manage.py makemigrations'
+alias migrate='python manage.py migrate'
+EOF
+
+# Update .bashrc to source ~/.bin/aliasses.sh
+if ! grep -q 'source ~/.bin/aliasses.sh' $HOME/.bashrc; then
+    echo 'source ~/.bin/aliasses.sh' >> $HOME/.bashrc
+fi
+
+# Update .zshrc to source ~/.bin/aliasses.sh
+if ! grep -q 'source ~/.bin/aliasses.sh' $HOME/.zshrc; then
+    echo 'source ~/.bin/aliasses.sh' >> $HOME/.zshrc
+fi
+
+echo "Aliases have been added and configuration files updated."
