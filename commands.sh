@@ -307,3 +307,19 @@ if ! grep -q 'source ~/.bin/aliasses.sh' $HOME/.zshrc; then
 fi
 
 echo "Aliases have been added and configuration files updated."
+
+# Check and install Node.js and npm (latest LTS)
+: <<'COMMENT'
+environment: cli
+category: mandatory
+title: Node.js and npm (latest LTS)
+COMMENT
+
+if command_exists node && command_exists npm; then
+    echo "Node.js and npm are already installed."
+else
+    curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+fi
+
+echo
