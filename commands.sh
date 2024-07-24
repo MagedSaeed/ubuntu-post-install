@@ -323,3 +323,18 @@ else
 fi
 
 echo
+
+# Check and install gnome-tweaks
+: <<'COMMENT'
+environment: gui
+category: mandatory
+title: gnome-tweaks
+COMMENT
+
+if command_exists gnome-tweaks; then
+    echo "gnome-tweaks is already installed."
+else
+    sudo apt install -y gnome-tweaks
+fi
+
+echo
